@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  "4040": weave/weave-scope-app:80
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
