@@ -21,27 +21,43 @@ kubectl apply -f coredns.yaml
 
 4. config nameservers
 ```
-$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns1 '{"host":"35.194.97.231"}'
-$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns2 '{"host":"35.190.227.3"}'
-$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns3 '{"host":"35.190.232.96"}'
+$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns1 '{"host":"NODE_IP01"}'
+$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns2 '{"host":"NODE_IP02"}'
+$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns3 '{"host":"NODE_IP03"}'
 ```
 
-5. deploy external-dns
+5. modify domain settings
+
+nameservers
+```
+ns1.ns.dns.kubernetes.cf
+ns2.ns.dns.kubernetes.cf
+ns3.ns.dns.kubernetes.cf
+```
+
+gluerecords
+```
+ns1.ns.dns.kubernetes.cf. IN A NODE_IP01
+ns2.ns.dns.kubernetes.cf. IN A NODE_IP02
+ns3.ns.dns.kubernetes.cf. IN A NODE_IP03
+```
+
+6. deploy external-dns
 ```
 kubectl apply -f external-dns.yaml
 ```
 
-6. deploy cert-manager
+7. deploy cert-manager
 ```
 kubectl apply -f cert-manager.yaml
 ```
 
-7. get certificate
+8. get certificate
 ```
 kubectl apply -f cert-manager-acme.yaml
 ```
 
-8. deploay nginx
+9. deploay nginx
 ```
 kubectl apply -f example-nginx.yaml
 ```
