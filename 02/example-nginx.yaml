@@ -4,9 +4,8 @@ metadata:
   name: nginx
   annotations:
     kubernetes.io/ingress.class: nginx
-    external-dns.alpha.kubernetes.io/target: 35.194.97.231
-    external-dns.alpha.kubernetes.io/target: 35.190.227.3
-    external-dns.alpha.kubernetes.io/target: 35.190.232.96
+    external-dns.alpha.kubernetes.io/target: 51.15.39.110
+    external-dns.alpha.kubernetes.io/target: 51.15.85.186
 spec:
   tls:
   - hosts:

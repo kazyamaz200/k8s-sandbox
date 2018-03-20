@@ -62,4 +62,4 @@ spec:
         - --log-level=debug
         env:
         - name: ETCD_URLS
-          value: http://example-etcd-cluster-client.default.svc.cluster.local:2379
+          value: http://etcd-cluster-client.default.svc.cluster.local:2379
