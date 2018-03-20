@@ -8,6 +8,10 @@ metadata:
     external-dns.alpha.kubernetes.io/target: 35.190.227.3
     external-dns.alpha.kubernetes.io/target: 35.190.232.96
 spec:
+  tls:
+  - hosts:
+    - example.kubernetes.cf
+    secretName: kubernetes-cf-tls-prod
   rules:
   - host: example.kubernetes.cf
     http:
