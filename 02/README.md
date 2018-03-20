@@ -2,6 +2,13 @@
 
 public-dns & letsencrypt
 
+### preps
+- NODE01 => controlplane, etcd
+- NODE02 => worker
+- NODE03 => worker
+- TCP => 53,80,443,2379,2380,4001,6443,10250,10254,10255,30000-32767
+- UDP => 53
+
 ### steps
 
 1. deploy etcd-operator
@@ -21,9 +28,9 @@ kubectl apply -f coredns.yaml
 
 4. config nameservers
 ```
-$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns1 '{"host":"NODE_IP01"}'
-$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns2 '{"host":"NODE_IP02"}'
-$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns3 '{"host":"NODE_IP03"}'
+$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns1 '{"host":"NODE01_IP"}'
+$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns2 '{"host":"NODE02_IP"}'
+$ etcdctl set /skydns/cf/kubernetes/dns/ns/ns3 '{"host":"NODE03_IP"}'
 ```
 
 5. modify domain settings
@@ -37,9 +44,9 @@ ns3.ns.dns.kubernetes.cf
 
 gluerecords
 ```
-ns1.ns.dns.kubernetes.cf. IN A NODE_IP01
-ns2.ns.dns.kubernetes.cf. IN A NODE_IP02
-ns3.ns.dns.kubernetes.cf. IN A NODE_IP03
+ns1.ns.dns.kubernetes.cf. IN A NODE01_IP
+ns2.ns.dns.kubernetes.cf. IN A NODE02_IP
+ns3.ns.dns.kubernetes.cf. IN A NODE03_IP
 ```
 
 6. deploy external-dns
