@@ -33,7 +33,13 @@ $ etcdctl set /skydns/cf/kubernetes/dns/ns/ns2 '{"host":"NODE02_IP"}'
 $ etcdctl set /skydns/cf/kubernetes/dns/ns/ns3 '{"host":"NODE03_IP"}'
 ```
 
-5. modify domain settings
+5. expose public-dns
+```
+kubectl -n ingress-nginx edit configmap tcp-services
+kubectl -n ingress-nginx edit configmap udp-services
+```
+
+6. modify domain settings
 
 nameservers
 ```
@@ -49,22 +55,22 @@ ns2.ns.dns.kubernetes.cf. IN A NODE02_IP
 ns3.ns.dns.kubernetes.cf. IN A NODE03_IP
 ```
 
-6. deploy external-dns
+7. deploy external-dns
 ```
 kubectl apply -f external-dns.yaml
 ```
 
-7. deploy cert-manager
+8. deploy cert-manager
 ```
 kubectl apply -f cert-manager.yaml
 ```
 
-8. get certificate
+9. get certificate
 ```
 kubectl apply -f cert-manager-acme.yaml
 ```
 
-9. deploay nginx
+10. deploay nginx
 ```
 kubectl apply -f example-nginx.yaml
 ```
