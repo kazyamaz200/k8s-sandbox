@@ -9,9 +9,16 @@ metadata:
 spec:
   tls:
   - hosts:
+    - kubernetes.cf
     - example.kubernetes.cf
     secretName: kubernetes-cf-tls-prod
   rules:
+  - host: kubernetes.cf
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
   - host: example.kubernetes.cf
     http:
       paths:
